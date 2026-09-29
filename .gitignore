@@ -41,3 +41,7 @@ wandb/
 .idea/
 .DS_Store
 Thumbs.db
+
+# Database files
+*.db
+*.sqlite
