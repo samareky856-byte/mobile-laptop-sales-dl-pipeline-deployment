@@ -4,13 +4,13 @@ from pathlib import  Path
 
 ROOT = Path(__file__).resolve().parent.parent
 DB_PATH = ROOT / "sales.db"
-CSV_PATH = ROOT / "data" / "mobile_sales_data.csv"
 engine = create_engine(f"sqlite:///{DB_PATH.as_posix()}")
 
-def load_sales_data():
-   df = pd.read_csv(CSV_PATH)
-   df.to_sql("sales", engine,if_exists="replace" , index=False)
-   return len(df)
+def extract_sales_data():
+    query = "SELECT * FROM sales"
+    df = pd.read_sql(query, engine)
+    return df
 
-df = load_sales_data()
-print(df)
+df = extract_sales_data()
+print(df.shape)
+print(df.head())
