@@ -7,7 +7,7 @@ DB_PATH = ROOT / "sales.db"
 engine = create_engine(f"sqlite:///{DB_PATH.as_posix()}")
 
 def extract_sales_data():
-    query = "SELECT * FROM sales"
+    query = "SELECT * FROM train JOIN store ON train.Store = store.Store"
     df = pd.read_sql(query, engine)
     return df
 
